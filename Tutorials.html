@@ -1,0 +1,954 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GraFT-App Wiki</title>
+  <style>
+    /* Reset default margin and padding */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    @font-face{
+      font-family: Neuropol;
+      src: url(Fonts/Neuropol.ttf);
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f8f8f8;
+    }
+
+    header {
+      background-color: #172628;
+      color: #38E79D;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .header img {
+      float: left;
+      width: 100px;
+      height: 100px;
+      background: #555;
+    }
+
+    .header h1 {
+      position: relative;
+      font-family: Neuropol;
+      top: 18px;
+      left: 10px;
+    }
+
+    a {
+      color: blue;
+      text-decoration: none;
+    }
+
+    a:hover {
+      cursor: pointer;
+    }
+
+    footer {
+      background-color: #172628;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0px -4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: auto;
+    }
+
+    /* Sticky Footer styles */
+    .content {
+      min-height: calc(100vh - 126px); /* Adjust based on your header and footer heights */
+      display: flex;
+      flex-direction: column;
+    }
+
+    body {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tab {
+      overflow: hidden;
+      border: 1px solid #ccc;
+      background-color: #f1f1f1;
+      position: -webkit-sticky;
+      position: sticky;
+      top: 0;
+    }
+
+    /* Style the buttons that are used to open the tab content */
+    .tab button {
+      background-color: inherit;
+      float: left;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      padding: 14px 16px;
+      transition: 0.3s;
+    }
+
+    /* Change background color of buttons on hover */
+    .tab button:hover {
+      background-color: #ddd;
+    }
+
+    /* Create an active/current tablink class */
+    .tab button.active {
+      background-color: #ccc;
+    }
+
+    /* Style the tab content */
+    .tabcontent {
+      display: none;
+      padding: 6px 12px;
+      border: 1px solid #ccc;
+      border-top: none;
+    }
+
+    .tabcontent {
+      animation: fadeEffect 1s; /* Fading effect takes 1 second */
+    }
+
+    /* Go from zero to full opacity */
+    @keyframes fadeEffect {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+
+    /* Modern bullet point styling */
+    .installation-steps {
+      list-style: none;
+      padding-left: 0;
+    }
+
+    .installation-steps li {
+      margin-bottom: 30px;
+    }
+
+    .step-content {
+      display: flex;
+      align-items: flex-start;
+    }
+
+    .step-number {
+      font-size: 20px;
+      color: #333;
+      margin-right: 20px;
+    }
+
+    .step-info {
+      flex: 1;
+    }
+
+    .step-info h3 {
+      font-size: 20px;
+      margin: 0;
+      margin-bottom: 10px;
+    }
+
+    .step-info p {
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0;
+    }
+
+    .step-image {
+      max-width: 50%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    .lone-image {
+      max-width: 100%;
+      height: auto;
+      border-radius: 3px;
+      box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    }
+
+    /* LIST */
+    .container {
+      display: flex;
+      justify-content: space-around;
+<!--      align-items: center;-->
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .todo-list {
+      background-color: #ffffff;
+      border-radius: 8px;
+      box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      width: 45%;
+    }
+
+    .todo-list h2 {
+      margin-top: 0;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #ccc;
+    }
+
+    /* Style for each todo item */
+    .todo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding: 10px 0;
+    }
+
+    .item-name {
+      flex: 1;
+      font-weight: bold;
+    }
+
+    .item-description {
+      flex: 2;
+      color: #777;
+      padding-left: 10px;
+    }
+
+    /* Media query for responsiveness */
+    @media screen and (max-width: 480px) {
+      .todo-list {
+        width: 100%;
+      }
+    }
+
+  </style>
+
+  <script>
+      // Get the element with id="defaultOpen" and click on it
+      document.getElementById("defaultOpen").click();
+
+      function openCity(evt, cityName) {
+      // Declare all variables
+      var i, tabcontent, tablinks;
+
+      // Get all elements with class="tabcontent" and hide them
+      tabcontent = document.getElementsByClassName("tabcontent");
+      for (i = 0; i < tabcontent.length; i++) {
+        tabcontent[i].style.display = "none";
+      }
+
+      // Get all elements with class="tablinks" and remove the class "active"
+      tablinks = document.getElementsByClassName("tablinks");
+      for (i = 0; i < tablinks.length; i++) {
+        tablinks[i].className = tablinks[i].className.replace(" active", "");
+      }
+
+      // Show the current tab, and add an "active" class to the button that opened the tab
+      document.getElementById(cityName).style.display = "block";
+      evt.currentTarget.className += " active";
+    }
+  </script>
+
+</head>
+<body>
+  <header>
+    <!-- ... (header content) ... -->
+    <div class="header">
+      <img src="images/graft_adam_logo_gonly.png" alt="logo">
+      <h1>GraFT-App Tutorials</h1>
+    </div>
+  </header>
+
+  <main>
+    <!-- Tab links -->
+    <div class="tab">
+      <button class="tablinks" onclick="openCity(event, 'Installation')" id="defaultOpen">Installation</button>
+      <button class="tablinks" onclick="openCity(event, 'Files')">Files</button>
+      <button class="tablinks" onclick="openCity(event, 'Loading')">Loading</button>
+      <button class="tablinks" onclick="openCity(event, 'Pre-Processing')">Pre-Processing</button>
+      <button class="tablinks" onclick="openCity(event, 'GraFT')">Run GraFT</button>
+      <button class="tablinks" onclick="openCity(event, 'Analyzing Results')">Analyzing Results</button>
+    </div>
+
+    <!-- Tab content -->
+
+    <!--    INSTALLATION TAB-->
+    <div id="Installation" class="tabcontent" style="display:block">
+      <section id="InstallationSection">
+        <h2>GraFT-App Installation</h2>
+        <br>
+        <p>Learn how to install GraFT-App on your system.
+        Follow the step-by-step guide to get the application up and running.</p>
+        <br>
+        <h2>System Recommendations</h2>
+        <p>To fully utilize the parallel processing optimizations, CPU should have
+          4+ cores and 8+ logical processors, 16GB or more RAM, and a capable GPU.</p>
+        <br>
+        <p>TABLE HERE WITH EXAMPLES OF HOW PERFORMANCE-PC COMPONENTS SHOULD LOOK</p><br>
+        <p>System used for the creation of GraFT-App and its tutorials had the Intel i7
+          13700K (16 cores, 24 logical) CPU, 64GB DDR4 RAM, and NVIDIA's RTX-3080 GPU. You can compare
+          your CPU at UserBenchmark.com
+          <a href="https://cpu.userbenchmark.com/Compare/Intel-Core-i7-13700-vs-Group-/m1963418vs10" target="_blank">here</a>
+          and your GPU
+          <a href="https://gpu.userbenchmark.com/Compare/Nvidia-RTX-3080-vs-Group-/4080vs10" target="_blank">here.</a></p>
+        <br>
+        <h2>Using MATLAB</h2>
+        <br>
+
+        <ul class="installation-steps">
+          <li>
+            <div class="step-content">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <h4>Dependencies</h4>
+                <p> Amongst the various toolboxes required to run GraFT, there are a few other toolboxes
+                  that are recommended for faster, more efficient run times. Visit the official
+                  <a href="https://github.com/adamshch/GraFT-analysis" target="_blank">GraFT-Analysis</a>
+                  website to view the most up-to-date information on dependencies.</p>
+                <br>
+                <p>Note: Updating MATLAB versions sometimes results in toolbox pathing errors. If
+                you update your system, ensure toolbox support is still present by going to the
+                Add-On Manager (Home tab and select  Add-Ons > Manage Add-Ons).</p>
+              </div>
+              <img class="step-image" src="images/git_repository.png" alt="Download Installer">
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <h4>Download the Installer</h4>
+                <p>Visit the <a href="link_to_my_repo" target="_blank">GraFT-App</a>
+                  website and download the latest .mlappinstall file.</p>
+                <br>
+                <p>To install an add-on in the MATLAB Current Folder browser, double-click the
+                  file. An installer opens to guide you through the installation process. Alternatively,
+                  under APPS tab, select Install App and select the .mlappinstall file.
+                </p>
+                <br>
+                <p>After installing, the GraFT app should be visible like shown in the image.</p>
+              </div>
+              <img class="step-image" src="images/Download_and_addon.png" alt="Download Installer">
+            </div>
+          </li>
+      </ul>
+
+        <br>
+        <h2>Using Stand-Alone Application</h2>
+        <p>Currently, only Windows OS has been tested and confirmed support for installing GraFT-App. Support
+          for Linux and iOS is our top priority and will be coming soon.</p>
+        <br>
+
+        <ul class="installation-steps">
+          <li>
+            <div class="step-content">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <h4>Download</h4>
+                <p>Visit the <a href="link_to_my_repo" target="_blank">GraFT-App</a>
+                  website for installer download. There are two possible options: MyAppInstaller_mcr.exe or
+                  MyAppInstaller_web.exe. The '_web' version is recommended if there will be access to
+                  fast internet access during installation, as this allows a much smaller executable file
+                  download. Otherwise, the '_mcr' version is ~2GB for download.</p>
+              </div>
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <h4>Install</h4>
+                <p>Follow the instructions on the installer and specify a path if that is desired.</p>
+                <br>
+                <p>Once downloaded, locate its location and double click GraFT_App to run. Alternatively,
+                  run GraFT_App.exe from the terminal to launch.</p>
+                </div>
+            </div>
+          </li>
+      </ul>
+      </section>
+    </div>
+
+
+    <!--    FILES TAB-->
+    <div id="Files" class="tabcontent">
+      <section>
+        <h2>Files</h2>
+        <p>GraFT-App uses .mat files for storing parameters, results, and personal app settings. These can
+          be loaded into MATLAB using the load(file_name) function or directly using the GraFT-App
+          <a onclick="openCity(event, 'Loading')" href="#GRAFT_load">option.</a>
+          PARAMS files only contains parameter information while GRAFT files contain everything else data-specific
+          such as original data, pre-processing settings, GraFT algorithm results, etc. Importantly, GRAFT files
+          by default contain its associated PARAMS file. </p><br>
+        <div style="text-align: center;">
+            <img class="lone-image" width="60%" src="images/files_info.png" alt="Download Installer">
+        </div>
+        <br>
+        <p>To minimize redundant data within GRAFT files, users can explicitly decide what is saved and what
+          is discarded prior to saving results. Moreover, non-MATLAB users will have a choice to export these files
+          as text or csv (currently in development).</p><br>
+
+        <ul class="installation-steps">
+          <li>
+            <div class="step-content">
+              <div class="step-info">
+                <h2>GRAFT</h2>
+                <p>Holding all of the data pertaining to the current study is the .GRAFT.mat file. It's designed as a
+                  MATLAB Class object (Class GRAFT) where each property is organized to fit about a GraFT-analysis
+                  workflow.</p><br>
+                <p>Each property within the GRAFT -mat type file is as follows: <strong>Data, PreProcess, GraFTed,
+                  Parameters, Log, About, and Encoding. </strong> Furthermore, each of these properties contain a
+                  MATLAB structure. More information regarding individual properties below.</p><br>
+                <p>Users have complete control to decide what to save specifically from within each property.</p><br>
+              </div>
+              <img class="step-image" src="images/graft_properties.png" alt="Download Installer">
+            </div>
+          </li>
+        </ul>
+      <p>If user does not specify GRAFT study file name, the default structure for file is as follows:
+        'dict[number of components]_lda[sparsity constraint (lambda)]_lfb[component regularization (lamForb)]
+        _lcr[temporal correlation regularization (lamCorr)]_date[month_day_year].GRAFT.mat.</p>
+
+
+      <!-- START OF PROPERTIES-->
+      <div class="container">
+        <div class="todo-list">
+          <h2>GRAFT Property: Data</h2>
+          <!-- DATA LIST HERE -->
+          <div class="todo-item">
+            <div class="item-name">.original</div>
+            <div class="item-description">Contains original data as it was loaded in initially</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.pre_graft</div>
+            <div class="item-description">Data prior to running GraFT algorithm</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.original_size</div>
+            <div class="item-description">Array [rows, columns, frame] of original data size</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.projection</div>
+            <div class="item-description">2D matrix taken from the mean projection of .pre_graft dataset. If
+              no .pre_graft data exists, it uses .original data. Used for quick plotting during GraFT-App pre-process.</div>
+          </div>
+        </div>
+
+        <div class="todo-list">
+          <h2>GRAFT Property: About</h2>
+          <!-- ABOUT LIST HERE -->
+          <div class="todo-item">
+            <div class="item-name">.name</div>
+            <div class="item-description">Given study name</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.author</div>
+            <div class="item-description">Creator name</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">data_time</div>
+            <div class="item-description">Time GraFT algorithm was used</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="todo-list">
+          <h2>GRAFT Property: PreProcess</h2>
+          <!-- PREPROCESS LIST HERE -->
+          <div class="todo-item">
+            <div class="item-name">.motco_method</div>
+            <div class="item-description">Name of motion correction method</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.wav_method</div>
+            <div class="item-description">Type of wavelet used for wavelet denoising</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.wav_order</div>
+            <div class="item-description">Wavelet order N as a positive integer from 2 to 45</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.wav_lvl</div>
+            <div class="item-description">Level of wavelet decomposition, specified as a positive integer:
+                                          floor(log2N) where N is the number of samples in the data.</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.wav_noise_est</div>
+            <div class="item-description">Method of estimating variance of noise in the data</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.wav_thresh</div>
+            <div class="item-description">Threshold rule used to shrink the wavelet coefficients.
+                                          Valid options depend on denoising method</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.preprocess_log</div>
+            <div class="item-description">Contains original data and its size, as well as current </div>
+          </div>
+        </div>
+
+        <div class="todo-list">
+          <h2>GRAFT Property: GraFTed</h2>
+          <!-- GRAFTED LIST HERE -->
+          <div class="todo-item">
+            <div class="item-name">.spatial</div>
+            <div class="item-description">Spatial GraFT algorithm results</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.temporal</div>
+            <div class="item-description">Temporal GraFT algorithm results</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.dl_reconstruct</div>
+            <div class="item-description">Dictionary learning reconstruction given GraFT algorithm coefficients</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.spatial_dl_diff</div>
+            <div class="item-description">Absolute difference between pre-GraFT and GraFT results</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.ROIs</div>
+            <div class="item-description">Initialized as an array 1:N where N is the total number of components found by
+                                          GraFt algorithm. Each integer corresponds to its ordered ROI (e.g 1 -> ROI-1, 3 -> ROI-3) </div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.artifacts</div>
+            <div class="item-description">Initialized as an empty array. Can later be adjusted by manually labeling
+                                          desired ROI as an artifact</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.plot_image</div>
+            <div class="item-description">Temporal results as an image</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.plot_line</div>
+            <div class="item-description">Temporal results as a stacked signal line plot</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.projection</div>
+            <div class="item-description">Mean projection of GraFT algorithm components only</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.projection_cols</div>
+            <div class="item-description">Colored mean projection of GraFT algorithm components using
+                                          distinguishable colors for ease of selecting</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="todo-list">
+          <h2>GRAFT Property: Encoding</h2>
+          <!-- ENCODING LIST HERE -->
+          <div class="todo-item">
+            <div class="item-name">.data_path</div>
+            <div class="item-description">Base path for data path loading</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.loading_type</div>
+            <div class="item-description">Loading type [File, Folder, GRAFT, S3]</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.temp_load</div>
+            <div class="item-description">For loading nested structures (such as .mat or h5 files). Allows for
+                                          traversing into file. This holds last layer selected for nest</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.files</div>
+            <div class="item-description">Nx1 list of strings of files chosen where N is the number of file(s) found
+                                          in chosen folder/file</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.flag</div>
+            <div class="item-description">Problem identifier</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.last_val_load</div>
+            <div class="item-description">String. Prevents double-loading of data</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.nest</div>
+            <div class="item-description">Structure for traversing nested file. Contains following fields: base
+                                          (root) and field_name</div>
+          </div>
+        </div>
+
+        <div class="todo-list">
+          <h2>GRAFT Property: Log</h2>
+          <!-- LOG LIST HERE -->
+          <div class="todo-item">
+            <div class="item-name">.pre_processed</div>
+            <div class="item-description">Contains comments and pre-processing techniques within GraFT-App. User editable</div>
+          </div>
+          <div class="todo-item">
+            <div class="item-name">.parameters</div>
+            <div class="item-description">Contains comments by creator regarding parameter decisions. User editable</div>
+          </div><div class="todo-item">
+            <div class="item-name">.analysis</div>
+            <div class="item-description">Contains comments regarding the analysis of GraFT algorithm results</div>
+          </div>
+        </div>
+      </div>
+
+      </section><br><br>
+
+      <section id="InstallationSection01">
+        <ul class="installation-steps">
+          <li>
+            <div class="step-content">
+              <div class="step-info">
+                <h2>GRAFT Property - PARAMS</h2>
+                <p>The .PARAMS.mat file format holds all the GraFT algorithm parameters that are user-configurable.
+                  Within the GraFT-App, the 'Parameters' tab will show all available variables and indicate when a crop or
+                  mask is present. Click on 'Detect' to update mask or crop status. </p><br>
+                <p>To better identify the PARAMS file, users can specify within the text area next to 'Name'. As
+                  stated earlier, the PARAMS file is automatically linked to its associated GRAFT file. To save
+                  PARAMS independently, clicking the 'Save' button in the 'Parameters' tab will export the current
+                  parameter settings.</p><br>
+                <p>The logic for having a .PARAMS file stems from the ease of sharing parameters between studies
+                  or users.</p>
+              </div>
+              <img class="step-image" src="images/parameters_default.png" alt="Download Installer">
+            </div>
+          </li>
+        </ul>
+      </section>
+
+    </div>
+
+    <!--    LOADING TAB-->
+    <div id="Loading" class="tabcontent">
+      <section id="InstallationSection2">
+        <h2>Loading Types</h2>
+        <p>There are three types of loading: Folder, File, and GRAFT. Upcoming updates will support
+        remote data alternatives, such as AWS S3.</p>
+        <br>
+        <h2>File Type Support</h2>
+        <p>Loading data within GraFT-App depends on the type of file. Currently, GraFT-App only
+        supports .tiff, .npg and h5.</p>
+        <br>
+
+        <ul class="installation-steps">
+          <li>
+            <div class="step-content">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <h4>Folder</h4>
+                <p>To load entire directory, selecting Folder will allow for supported files within
+                  chosen folder be loaded. More information about a specific file will be shown in the right-most
+                  dialog box after a selection. If all files are uniform within the directory, 'All' > 'Select' will
+                  be made available.</p>
+              </div>
+              <img class="step-image" src="images/folder_load.png" alt="Download Installer">
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <h4 id="GRAFT_load" >File</h4>
+                  <p>For individual files, either a TIFF image stack, individual .mat or h5 file, select File. For particular
+                    file types with nested structures, such as .mat or h5, further options will be shown for selecting
+                    correct fieldnames that contain desired data.</p>
+              </div>
+              <img class="step-image" src="images/file_load.png" alt="Download Installer">
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">3</div>
+              <div class="step-info">
+                <h4>GRAFT Object</h4>
+                  <p>Lastly, it's possible to load GRAFT objects, which are native .mat-type files
+                    used for GraFT-App results. After running and saving results into a GRAFT file, it is
+                    possible to load data saved within for further analysis.</p>
+              </div>
+              <img class="step-image" src="images/graft_load.png" alt="Download Installer">
+            </div>
+          </li>
+      </ul>
+      </section>
+
+      <h2>Confirmation</h2>
+      <p>View the dialog box for system updates regarding proper loading. To load new file, selecting New Load
+          button will reset GraFT-App and all its tabs.</p><br>
+      <div style="text-align: center;">
+        <img class="lone-image" width="60%" src="images/images_loaded.png" alt="Download Installer"><br>
+      </div>
+    </div>
+
+
+    <!--PRE_PROCESSING TAB-->
+    <div id="Pre-Processing" class="tabcontent">
+      <h2>Pre-Processing with GraFT-App</h2>
+      <div class="step-content">
+        <div class="step-info">
+           <p>Useful techniques that GraFT-App offers for pre-processing calcium imaging data includes
+             <a href="#MotionCorrection">Motion Correction</a>
+             and
+             <a href="#WaveletDenoising">Wavelet Denoising.</a>
+             Spatial filtering and baseline correction will also be available in future updates.
+             These can be accessed through the Pre-Processing tab.</p><br>
+          <p>For specific pre-processing pipelines, it may be better suited for users to upload their processed
+          data. GraFT algorithm results can change significantly due to pre-processing approaches.</p>
+          <br>
+          <p>Furthermore, GraFT-App allows users to alter data size via
+            <a href="#Mask">mask</a>
+            creation and data
+            <a href="#Crop">cropping</a>
+            options.</p><br>
+        </div>
+        <img class="step-image" src="images/pre_processing.png" alt="Download Installer">
+      </div>
+
+      <br>
+      <ul class="installation-steps">
+        <li>
+          <div class="step-content">
+            <div id="MotionCorrection" class="step-number">Motion Correction</div>
+            <div class="step-info">
+              <p>Correcting for motion artifacts or drift in the imaging data can improve the accuracy of ROI
+                analysis and event detection</p><br>
+              <p>GraFT-App uses
+                <a href="https://github.com/flatironinstitute/NoRMCorre" target="_blank">NoRMCorre</a>
+                for piecewise rigid motion correction of 2D or 3D calcium imaging data. The algorithm operates
+                by splitting the field of view into a set of overlapping patches. For each patch and each frame a
+                rigid translation is estimated by aligning the patch against a template using an efficient, FFT
+                based, algorithm for subpixel registration [2]. The estimated set of translations is further
+                upsampled to a finer resolution to create a smooth motion field that is applied to a set of smaller
+                overlapping patches.</p><br>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <img class="lone-image" width="60%" src="images/normcorre.png" alt="Download Installer">
+            <p>Image taken from <a href="https://github.com/flatironinstitute/NoRMCorre" target="_blank">NoRMCorre</a>.</p>
+          </div>
+        </li>
+
+        <li>
+          <div class="step-content">
+            <div class="step-number">Wavelet Denoising</div>
+            <div id="WaveletDenoising" class="step-info">
+              <p>Wavelet-based techniques are useful for suppressing noise while preserving relevant features in the data.</p><br>
+              <p>GraFT utilizes the
+                <a href="https://www.mathworks.com/help/wavelet/index.html?s_tid=CRUX_topnav" target="_blank">Wavelet Toolbox</a>
+                functions to provide users with various signal analysis methods. By default
+                <a href="https://www.mathworks.com/help/wavelet/ref/wdenoise.html" target="_blank">wdenoise</a>
+                is used with BlockJS denoising method, a sym4 wavelet, and a smoothing level of 4. Click on advanced
+                for more options.</p>
+            </div>
+          </div>
+        </li>
+        <div style="text-align: center;">
+          <img class="lone-image" width="60%" src="images/wavelet_denoising.png" alt="wavelet denoising">
+        </div>
+      </ul>
+
+      <br><h2 id="Crop">Altering Data Size</h2>
+      <p>GraFT-App offers crop and mask options for further sub-selection of the loaded data, but
+        they behave rather differently from each other. Crop will trim data that is currently loaded whereas
+        mask will only take effect AFTER pre-processing (internally within GraFT algorithm).</p><br>
+      <p>Note: Consider timing of pre-processing techniques, such as performing motion correction before cropping,
+        for best results. Crop and mask are mutually exclusive.</p><br>
+      <ul class="installation-steps">
+          <li>
+            <h4>Crop</h4>
+            <div class="step-content">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <p>Select 'crop' button and hover cursor over the large projection plot. After cursor
+                  changes from pointer to cross-hairs, press and hold left-click to begin tracing the
+                  rectangle-shaped area of interest. Release to finish the selection area.</p><br>
+                <p>Click and drag to re-position selected crop area, or click and drag corners/sides
+                  to further modify selection.</p><br>
+              </div>
+              <img class="step-image" src="images/crop_vid1.gif" alt="Download Installer">
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <p>Select 'Apply' to crop selection on current data. This may take some time depending
+                  on the size of data.</p><br>
+                <p>Select 'Cancel' to remove selection.</p>
+              </div>
+              <img class="step-image" src="images/crop_1.png" alt="Download Installer">
+            </div>
+          </li>
+        </ul>
+
+      <p>When crop is used, it will be reflected in the GraFT parameters. Specifically within the
+        accompanying PARAMS file, the rectangle coordinates used will be saved under the 'crop'
+        field. Rectangle coordinates indicate the size and position of the cropped rectangle as a 4-element
+        numeric vector of the form [xmin ymin width height].</p><br>
+      <div style="text-align: center;">
+        <img class="lone-image" width="40%" src="images/crop_rect.png" alt="Download Installer">
+      </div>
+
+      <ul id="Mask" class="installation-steps">
+          <li>
+            <br>
+            <h3>Mask</h3>
+            <p>Incorporating a mask allows for only a sub-selection of the original data be used for analysis.
+              Different from crop, adding a mask will not alter data size until it's used internally within the GraFT
+              algorithm. When running GraFT, a temporary dataset dictated by the mask will be generated and only
+              those pixels will be considered. Once complete, selected pixels will repopulate the original-sized
+              dataset. To learn more about how GraFT masking works and methods used, visit our
+              <a href="page_to_" target="_blank">API</a>
+              page.</p><br>
+            <p>There are several ways to add a mask to your data. To create a free-hand mask, follow in-depth
+              'Creating Free-Hand Mask' tutorial below.</p><br>
+            <p>Alternatively, a pre-existing mask can be loaded directly using the 'Self-Load' button. Accepted formats
+              are matrices (type binary) within an independent .mat file as well as .PARAMS files used in previous
+              GraFT algorithm runs.</p><br>
+            <p>Lastly, pre-computed masks (coming soon) are available. These options are threshold-determined
+              masks utilizing varying techniques such as Otsu's method, Triangle method, Mean and Standard
+              Deviation, and Median and Median Absolute Deviation. Select from the drop-down options desired method
+              and view results before running GraFT.</p><br>
+            <h5>Creating Free-Hand Mask</h5>
+            <div class="step-content">
+              <div class="step-number">1</div>
+              <div class="step-info">
+                <p>Select 'Select Area' button and hover cursor over the large projection plot. Wait for the cursor to
+                  change from pointer to cross-hairs. Left-click and drag the cursor over desired area in whatever
+                  shape is required. Letting go of the left-click will darken the selection.</p><br>
+                <p>Change the color of the selection by clicking on 'Color' Button. Colored highlights are only
+                  available before mask is applied.</p>
+              </div>
+              <img class="step-image" src="images/folder_load.png" alt="Download Installer">
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">2</div>
+              <div class="step-info">
+                <p>Once initial selection is complete, small circles around its perimeter will form. To edit the
+                  shape slightly along its respective axis, click and drag on one of the small circles accordingly.
+                  To move the entire mask, click and drag the highlighted area by its center.</p>
+                <p>Click on the 'Apply' button to finalize the current selection or 'Clear' to re-do the current
+                  selection. The mask area should now cover the projection plot.</p><br>
+                <p>Toggle the mask on/off using by clicking the 'View Mask' button.</p>
+              </div>
+              <img class="step-image" src="images/mask_vid2.gif" alt="Download Installer">
+            </div>
+          </li>
+
+          <li>
+            <div class="step-content">
+              <div class="step-number">3</div>
+              <div class="step-info">
+                <p>This process can be repeated for added mask selections. Once the mask is complete, simply move to
+                  other sections. Removing the mask using the 'Delete' button will clear its entirety, not just the
+                  last mask selection.</p>
+              </div>
+              <img class="step-image" src="images/mask_2.png" alt="Download Installer">
+            </div>
+          </li>
+      </ul>
+
+    </section>
+    </div>
+
+
+    <!--    GRAFT TAB-->
+    <div id="GraFT" class="tabcontent">
+      <h2>Running GraFT Algorithm</h2>
+      <div class="step-content">
+        <div class="step-info">
+          <p>For specific pre-processing pipelines, it may be better suited for users to upload their processed
+          data. GraFT algorithm results can change significantly due to pre-processing approaches.</p>
+          <br>
+        </div>
+      </div>
+
+      <ul class="installation-steps">
+        <li>
+          <div class="step-content">
+            <div class="step-number">Checking Parameters</div>
+            <div class="step-info">
+              <p>Prior to running GraFT, it is advised to perform a last check of the parameters currently loaded.
+                  For this, click the 'Check PARAMS' button on the top of the GraFT tab. A list of all current
+                  settings will be shown along with the author and study name specified in their respective text
+                  areas.</p><br>
+              <p>Be patient when running GraFT. If plot is enabled for non patch-GraFT studies, progress will be shown
+                  in the form of plots for each iteration. Otherwise, GraFT will run until it converges or when it
+                  finishes its last iteration.</p>
+            </div>
+          </div>
+          <div style="text-align: center;">
+            <img class="lone-image" width="60%" src="images/check_params_preGraFT.png" alt="Download Installer">
+          </div>
+        </li>
+
+        <li>
+          <div class="step-content">
+            <div class="step-number">GraFT Algorithm Results</div>
+            <div class="step-info">
+              <p>Viewing preliminary component results using the 'Results' Tab allows for user to view each
+                component and its respective temporal results. To change the colormap for the spatial plot,
+                use the colormap drop down menu to select between gray (default), parula, jet, and sky colormap.</p><br>
+            </div>
+          </div>
+        </li>
+        <div style="text-align: center;">
+          <img class="lone-image" width="60%" src="images/graft_results.png" alt="wavelet denoising">
+        </div>
+      </ul>
+    </div>
+
+<!--    ANALYSING RESULTS TAB-->
+    <div id="Analyzing Results" class="tabcontent">
+      <section id="InstallationSection5">
+        <h2>Analysing GraFT Algorithm Results</h2>
+        <p>In this section, we cover the tools used for analyzing GraFT-Algorithm results. To save time, it's advised
+          to check all ROIs and reconstructed videos prior to saving to GRAFT file.</p><br>
+
+        <h3>ROIs TAB</h3>
+        <p>The top two plots depict the entire ROIs found. The top left plot shows the overlaid spatial results, with
+          each ROI taking a unique distinguishable color. The top right plot shows the ROIs' temporal counterparts in a stacked
+          line plot. The same colored ROI from the distinguishable colors plot coincides with the same colored line plot when
+          viewed in the 'Line' Temporal View Mode. </p><br>
+        <p>The second option 'Image' for Temporal View Mode treats the temporal values as
+          a scaled image, with each row representing a new ROI.</p><br>
+        <div style="text-align: center;">
+          <img class="lone-image" width="60%" src="images/rois_main.png" alt="Download Installer">
+        </div><br>
+
+        <ul class="installation-steps">
+          <li>
+            <div class="step-content">
+              <div class="step-number">Viewing ROIs</div>
+              <div class="step-info">
+                <p>Upper right plot behaviour</p><br>
+              </div>
+            </div>
+            <div style="text-align: center;">
+              <img class="lone-image" width="60%" src="images/check_params_preGraFT.png" alt="Download Installer">
+            </div>
+          </li>
+        </ul>
+      </section>
+    </div>
+
+  </main>
+
+  <footer>
+    <!-- ... (footer content) ... -->
+    A. S. Charles, N. Cermak, R. O. Affan, B. B. Scott, J. Schiller and G. Mishne, "GraFT: Graph Filtered Temporal
+    Dictionary Learning for Functional Neural Imaging," in IEEE Transactions on Image Processing, vol. 31, pp.
+    3509-3524, 2022, doi: 10.1109/TIP.2022.3171414.<br>
+    &copy; 2023 GraFT-App
+  </footer>
+</body>
+</html>

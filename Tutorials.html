@@ -237,6 +237,21 @@
       }
     }
 
+    /* Download Button */
+    .download-button{
+      background-color: #1a3731;
+      color: #fff;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 10px;
+      cursor: pointer;
+      border-radius: 5px;
+    }
+
   </style>
 
   <script>
@@ -292,7 +307,16 @@
     <div id="Installation" class="tabcontent" style="display:block">
       <section id="InstallationSection">
         <h2>GraFT-App Installation</h2>
-        <br>
+        <p>Download our latest stand-alone or MATLAB App available here. Currently, we only have support for Windows
+        Stand-Alone application.</p>
+        <div style="text-align: center;">
+          <a href="MyAppInstaller_web.exe" download>
+            <button class="download-button">Win64 Stand-Alone</button>
+          </a>
+          <a href="GraFT2.mlappinstall" download>
+            <button class="download-button">MATLAB App</button>
+          </a>
+        </div>
         <p>Learn how to install GraFT-App on your system.
         Follow the step-by-step guide to get the application up and running.</p>
         <br>
@@ -362,10 +386,9 @@
               <div class="step-info">
                 <h4>Download</h4>
                 <p>Visit the <a href="link_to_my_repo" target="_blank">GraFT-App</a>
-                  website for installer download. There are two possible options: MyAppInstaller_mcr.exe or
-                  MyAppInstaller_web.exe. The '_web' version is recommended if there will be access to
-                  fast internet access during installation, as this allows a much smaller executable file
-                  download. Otherwise, the '_mcr' version is ~2GB for download.</p>
+                  website for installer download or simply click the download button above ('Win64 Stand-Alone').
+                  This will download a file named: MyAppInstaller_web.exe. The '_web' within the name indicates that internet is
+                  required for initial installation.</p>
               </div>
             </div>
           </li>

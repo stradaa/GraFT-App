@@ -33,7 +33,7 @@ in the MathWorks Documentation Center.
 
 # Manuscript
 
-The details of GraFT are described in:
+The details of GraFT algorithm are described in:
 
 A.S. Charles, N. Cermak, R. Affan, B. Scott, J. Schiller & G. Mishne. GraFT: Graph Filtered Temporal Dictionary Learning for Functional Neural Imaging.
 

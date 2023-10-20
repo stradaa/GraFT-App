@@ -1,6 +1,6 @@
 # GraFT-Application
 
-This repository contains the back-end of our GraFT-App website: https://stradaa.github.io/GraFT-App/
+This repository contains the back-end of our [GraFT-App](https://stradaa.github.io/GraFT-App/) website.
 
 GraFT (Graph-Filtered Temporal) dictionary learning is a signal extraction method for spatio-temporal data. GraFT uses a diffusion map to learn a graph over spatial pixels that enables for stochastic filtering of learned sparse representations over each pixel's time-trace. The sparse representations are modeled as in a hierarchical dictionary learning framework with correlated decompositions over the graph.
 
